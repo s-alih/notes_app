@@ -27,6 +27,19 @@ const addNotes = (tittle,body)=>{
  
  
 }
+const removeNote = (tittle)=>{
+    const notes = getAllNotes()
+    const newArray = notes.filter((note)=>{
+        return !(note.tittle === tittle)
+    })
+    if(newArray.length === notes.length){
+       console.log('No notes found for this tittle to remove');
+    }else{
+        writeNotes(newArray);
+        console.log('removed successfully');
+    }
+}
+
 const getAllNotes = ()=>{
     try{
         const bufferData =  fs.readFileSync('notes.txt')
@@ -45,7 +58,9 @@ const writeNotes = (notes)=>{
 
 
 
+
 module.exports = {
     getNotes,
-    addNotes
+    addNotes,
+    removeNote
 }
