@@ -2,17 +2,13 @@ const fs = require('fs')
 const chalk = require('chalk')
 
 
-const getNotes = ()=>{
-    return "this is my notes"
-}
+const getNotes = ()=>"this is my notes"
 
 const addNotes = (tittle,body)=>{
  //get all notes
  const notes = getAllNotes()
  //check duplication
- const duplicated = notes.filter((note)=>{
-     return note.tittle === tittle;
- })
+ const duplicated = notes.filter((note)=>note.tittle === tittle)
  if(duplicated.length === 0){
     //push into array
     notes.push({
