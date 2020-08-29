@@ -1,4 +1,5 @@
 const fs = require('fs')
+const chalk = require('chalk')
 
 
 const getNotes = ()=>{
@@ -12,7 +13,7 @@ const addNotes = (tittle,body)=>{
  const duplicated = notes.filter((note)=>{
      return note.tittle === tittle;
  })
- if(duplicated.length == 0){
+ if(duplicated.length === 0){
     //push into array
     notes.push({
         tittle:tittle,
@@ -20,9 +21,9 @@ const addNotes = (tittle,body)=>{
     })
     //write the file
     writeNotes(notes)
-    console.log('notes added successfully');
+    console.log(chalk.green.inverse('notes added successfully'));
  }else{
-     console.log('Alredy has this tittle');
+     console.log(chalk.red.inverse('Alredy has this tittle'));
  }
  
  
@@ -30,13 +31,13 @@ const addNotes = (tittle,body)=>{
 const removeNote = (tittle)=>{
     const notes = getAllNotes()
     const newArray = notes.filter((note)=>{
-        return !(note.tittle === tittle)
+        return note.tittle !== tittle
     })
     if(newArray.length === notes.length){
-       console.log('No notes found for this tittle to remove');
+       console.log(chalk.red.inverse('No note found!'));
     }else{
         writeNotes(newArray);
-        console.log('removed successfully');
+        console.log(chalk.green.inverse('Note removed'));
     }
 }
 
